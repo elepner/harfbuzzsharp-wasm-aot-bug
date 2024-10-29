@@ -1,4 +1,5 @@
-﻿
+﻿@using SkiaSharp;
+@using SkiaSharp.HarfBuzz;
 @page "/"
 
 <PageTitle>Home</PageTitle>
@@ -15,5 +16,14 @@ Welcome to your new app.
     Console.WriteLine("Home page initialized");
     var sk = new SkiaSharp.SKBitmap(100, 100);
     Console.WriteLine(sk);
+
+    var skFont = SKFontManager.CreateDefault();
+    var typeface = skFont.MatchFamily(skFont.GetFamilyName(0));
+    Console.WriteLine(skFont);
+    
+    
+    var shaper = new SkiaSharp.HarfBuzz.SKShaper(typeface);
+    Console.WriteLine(shaper);
   }
-}
+}   
+    

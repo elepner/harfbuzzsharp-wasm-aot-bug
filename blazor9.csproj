@@ -12,8 +12,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.10" PrivateAssets="all" />
     <PackageReference Include="SkiaSharp" Version="3.0.0-preview.5.4" />
+    <PackageReference Include="SkiaSharp.HarfBuzz" Version="3.0.0-preview.5.4" />
     <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="3.0.0-preview.5.4" />
-    <NativeFileReference Include="$(SkiaSharpStaticLibraryPath)\3.1.56\simd,st\*.a" />
+    <PackageReference Include="HarfBuzzSharp.NativeAssets.WebAssembly" Version="8.3.0-preview.5.4" />
+    <NativeFileReference Include="$(SkiaSharpStaticLibraryPath)\3.1.56\st\*.a" />
+    <NativeFileReference Include="$(HarfBuzzSharpStaticLibraryPath)\3.1.56\st\*.a" />
   </ItemGroup>
 
 </Project>
