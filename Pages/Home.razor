@@ -1,11 +1,14 @@
-﻿@using SkiaSharp;
+﻿
 
 @page "/"
+@using HarfBuzzSharp
+@using SkiaSharp
+@using SkiaSharp.Views.Blazor
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
-
+<SKCanvasView OnPaintSurface="OnPaintSurface" />
 
 
 Welcome to your new app.
@@ -14,17 +17,23 @@ Welcome to your new app.
 
     protected override void OnInitialized()
     {
-        var skObject = new SkiaSharp.SKColor(1, 1, 1);
+    }
 
-        var skObject2 = new SkiaSharp.SKPaint()
+    private void OnPaintSurface(SKPaintSurfaceEventArgs e)
+    {
+        // Get the canvas and clear it with a white background
+        var canvas = e.Surface.Canvas;
+        canvas.Clear(SKColors.White);
+
+        // Create paint for the text
+        using var paint = new SKPaint
         {
-            Color = SKColors.DarkKhaki
+            Color = SKColors.Black,
+            IsAntialias = true,
+            TextSize = 24
         };
 
-        var shaper = new SkiaSharp.HarfBuzz.SKShaper(SKTypeface.Default);
-        SKCanvas canvas = new SKCanvas(new SKBitmap());
-        canvas.DrawText("Hi", 0, 0, new SKFont(SKTypeface.Default), new SKPaint());
-        Console.WriteLine("Draw text is there");
-        Console.WriteLine(string.Join(",", FontRuler.Instance.AvailableFonts));
+        // Draw the text at a specific location
+        canvas.DrawText("Yo canvas!", 50, 50, paint);
     }
 }
