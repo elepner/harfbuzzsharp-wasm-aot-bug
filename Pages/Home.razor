@@ -14,7 +14,6 @@ Welcome to your new app.
 
     protected override void OnInitialized()
     {
-        Console.WriteLine("Home page initialized 2");
         var skObject = new SkiaSharp.SKColor(1, 1, 1);
 
         var skObject2 = new SkiaSharp.SKPaint()
@@ -22,29 +21,10 @@ Welcome to your new app.
             Color = SKColors.DarkKhaki
         };
 
-
+        var shaper = new SkiaSharp.HarfBuzz.SKShaper(SKTypeface.Default);
         SKCanvas canvas = new SKCanvas(new SKBitmap());
         canvas.DrawText("Hi", 0, 0, new SKFont(SKTypeface.Default), new SKPaint());
         Console.WriteLine("Draw text is there");
+        Console.WriteLine(string.Join(",", FontRuler.Instance.AvailableFonts));
     }
-
-    // private void OnPaintSurface(SKPaintSurfaceEventArgs e)
-    // {
-    //     // Get the canvas and clear it with a white background
-    //     var canvas = e.Surface.Canvas;
-    //     canvas.Clear(SKColors.White);
-
-    //     // Create paint for the text
-    //     using var paint = new SKPaint
-    //     {
-    //         Color = SKColors.Black,
-    //         IsAntialias = true,
-    //         TextSize = 24
-    //     };
-
-    //     // Draw the text at a specific location
-    //     canvas.DrawText("Yo canvas!", 50, 50, paint);
-    //     // Console.WriteLine(FontRuler.Instance.AvailableFonts);
-    // }
-
 }
