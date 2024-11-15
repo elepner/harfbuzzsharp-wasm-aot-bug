@@ -1,39 +1,29 @@
 ﻿
 
 @page "/"
-@using HarfBuzzSharp
 @using SkiaSharp
-@using SkiaSharp.Views.Blazor
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
-<SKCanvasView OnPaintSurface="OnPaintSurface" />
 
 
 Welcome to your new app.
 
 @code{
 
+    
+
     protected override void OnInitialized()
     {
-    }
-
-    private void OnPaintSurface(SKPaintSurfaceEventArgs e)
-    {
-        // Get the canvas and clear it with a white background
-        var canvas = e.Surface.Canvas;
-        canvas.Clear(SKColors.White);
-
-        // Create paint for the text
-        using var paint = new SKPaint
+        var shaper = new SkiaSharp.HarfBuzz.SKShaper(SKTypeface.Default);
+        var result = shaper.Shape("Hello world", new SKPaint()
         {
-            Color = SKColors.Black,
-            IsAntialias = true,
-            TextSize = 24
-        };
+            Typeface = SKTypeface.Default,
+            TextSize = 42
+        });
 
-        // Draw the text at a specific location
-        canvas.DrawText("Yo canvas!", 50, 50, paint);
+        var w = result.Width;
+        Console.WriteLine($"Width: {w}");
     }
 }
